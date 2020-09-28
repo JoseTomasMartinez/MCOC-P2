@@ -47,4 +47,3 @@ class Reticulado(object):
         for i in range(len(self.barras)):
         	s += f"{i} : {[self.barras[i].ni,self.barras[i].nj]}\n"
         return s 
-        return
