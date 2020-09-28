@@ -34,7 +34,7 @@ class Reticulado(object):
     	for i in range(self.barras):
     		for j in range(self.barras):
     			if i!=j and j>i:
-    				n.append([i,j])
+    				n.append(np.array([i,j]))
     	return n
     def agregar_restriccion(self, nodo, gdl, valor=0.0):
         return
