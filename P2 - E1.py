@@ -7,6 +7,7 @@ Created on Sun Sep 27 19:10:54 2020
 
 from reticulado import Reticulado
 from barra import Barra
+from graficar2d import ver_reticulado_2d
 
 # Unidades
 cm = 1e-2
@@ -37,11 +38,10 @@ ret.agregar_barra(b1)
 ret.agregar_barra(b2)
 ret.agregar_barra(b3)
 
-print(b1.calcular_largo)
 
 print(ret)
-# peso_total = ret.calcular_peso_total()
+peso_total = ret.calcular_peso_total()
 
-# print(f"peso_total = {peso_total}")
+print(f"peso_total = {peso_total}")
 
-# ver_reticulado_2d(ret)
+ver_reticulado_2d(ret)
