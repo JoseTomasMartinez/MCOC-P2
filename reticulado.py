@@ -40,4 +40,11 @@ class Reticulado(object):
     def recuperar_fuerzas(self):
         return
     def __str__(self):
+        s = "nodos:\n"
+        for i in range(self.Nnodos):
+            s += f"{i} : {self.obtener_coordenada_nodal(i)}\n"
+        s += "barras:\n"
+        for i in range(len(self.barras)):
+        	s += f"{i} : {[self.barras[i].ni,self.barras[i].nj]}\n"
+        return s 
         return
