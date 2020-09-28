@@ -32,3 +32,5 @@ class Barra(object):
     def calcular_peso(self):
         self.p =  self.ρ*self.A*self.L
         return self.p
+    
+    #probando
