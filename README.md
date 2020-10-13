@@ -13,7 +13,8 @@
 * El Peso total de la estructura inicial resulta: 24197.43808 [N]
 
 ## 1) 
-* Luego de determinar que la combinacion de carga con mayor valor absoluto es la que involucra cargas vivas y muertas (1,2 D + 1,6 L), se escogieron las barras 3, 4, 18, 19 y 29, cuyo nodos son (4,5), (5,6), (0,4), (7,4) y (6,3) respectivamente. Para elegir las barras se escribió un codigo que identifique las barras que poseen mayor fuerza para así rediseñarlas y optimizar la estructura.
+* Luego de determinar que la combinacion de carga con mayor valor absoluto es la que involucra cargas vivas y muertas (1,2 D + 1,6 L), se escogieron las barras 3, 4, 18, 19 y 29, cuyo nodos son (4,5), (5,6), (0,4), (7,4) y (6,3) respectivamente. Para elegir las barras se escribió un codigo que identifique las barras que poseen mayor fuerza para así rediseñarlas y optimizar la estructura. Las fuerzas de las barras 3 y 4 antes de ser rediseñadas son iguales a 50.800N y un facto de utilización igual a 0,06, mientras que las tres restantes tienen una fuerza de 23.140N y factor de utilizacion 0,03. Luego de aplicar el rediseño se disminuyen las fuerzas de las barras 3 y 4 a 50.577N y 50.354N, con un factor de utilización de 0,98 y 0,97. Por otro lado las barras 18, y 29 disminuyeron su fuerza a 22.559N y 22.165N con un factor de utilización de 1 y 0,96, mientras que la barra 19 aumento a 23.524 con un factor de utilización de 0,94. Si biene la barra 19 aumento en algo su fuerza, la estrucutura mejoró la distribución de las fuerzas y el peso notablemente, ya que las barras rediseñadas poseen factores de utulización muy cercanos a 1. 
+
 
 
 ## 2)
