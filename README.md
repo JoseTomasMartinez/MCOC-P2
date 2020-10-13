@@ -12,7 +12,8 @@
 
 * El Peso total de la estructura inicial resulta: 24197.43808 [N]
 
-## 1)
+## 1) 
+* Luego de determinar que la combinacion de carga con mayor valor absoluto es la que involucra cargas vivas y muertas (1,2 D + 1,6 L), se escogieron las barras 3, 4, 18, 19 y 29, cuyo nodos son (4,5), (5,6), (0,4), (7,4) y (6,3) respectivamente. Para elegir las barras se escribió un codigo que identifique las barras que poseen mayor fuerza para así rediseñarlas y optimizar la estructura.
 
 
 ## 2)
