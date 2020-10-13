@@ -34,7 +34,7 @@ class Barra(object):
 		return np.sqrt(np.dot(dij,dij))
 
 	def calcular_inercia(self):
-		I = np.pi*[self.R**4-(self.R-self.t)**4]
+		I = np.pi*(self.R**4-(self.R-self.t)**4)/4
 		return I
 
 	def calcular_peso(self, reticulado):
@@ -114,12 +114,18 @@ class Barra(object):
 		se cumplan las disposiciones de diseño lo más cerca posible
 		a FU = 1.0.
 		"""
-		#A = self.calcular_area()
-		#I = self.calcular_inercia()
-		#FU = Fu/(φ*A*self.σy)
-		self.t = 0.09
-		self.R = 0.09
-		print (f"R,t = {self.R,self.t}")
-		return [self.R,self.t]
+		self.R = np.sqrt(abs(Fu)/(φ*self.σy*np.pi*0.98))
+		self.t = np.sqrt(abs(Fu)/(φ*self.σy*np.pi*0.98))
+		A = self.calcular_area()
+		I = self.calcular_inercia()
+		L = self.calcular_largo(ret)
+		FU = (abs(Fu)/(φ*A*self.σy))
+		i = np.sqrt(I/A)
+		λ =L/i
+		while FU > 1. and λ<300:
+			self.R=1.05*self.R
+			self.t=1.05*self.t
+		print (f"FU,λ = {FU,λ}")
+		return None
 
 

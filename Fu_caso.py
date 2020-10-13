@@ -100,7 +100,7 @@ plt.show()
 
 
 #---------------REDISEÑO-------------
-
+print(Fu[3])
 ret_D.rediseñar(Fu)
 
 #----------------CORRER MODELO CON VALORES NUEVOS----------------------
@@ -116,10 +116,12 @@ f_L = ret_L.recuperar_fuerzas()
 Fu=0
 if LA.norm(1.2*ret_D.recuperar_fuerzas()+1.6*ret_L.recuperar_fuerzas())>LA.norm(1.4*ret_D.recuperar_fuerzas()):
     Fu=1.2*f_D + 1.6*f_L #Combinacion 2
+    Fut=1.4*f_D #Combinacion 1
     CasoDom = "Caso Dominante 1.2 D + 1.6 L"
     print(CasoDom)
 elif LA.norm(1.2*ret_D.recuperar_fuerzas()+1.6*ret_L.recuperar_fuerzas())<LA.norm(1.4*ret_D.recuperar_fuerzas()):
-    Fu=1.4*f_D
+    Fu=1.4*f_D #Combinacion 1
+    Fut=1.2*f_D + 1.6*f_L #Combinacion 2
     CasoDom = "Caso Dominante 1.4D"
     print(CasoDom)
 
@@ -128,7 +130,7 @@ peso = ret_D.calcular_peso_total()
 print(f"peso reticulado REDISEÑADO = {peso}")
 
 FU_dom = ret_D.recuperar_factores_de_utilizacion(Fu)
-
+FU_n = ret_D.recuperar_factores_de_utilizacion(Fut)
 import matplotlib.pyplot as plt
 
 ver_reticulado_3d(ret_D, 

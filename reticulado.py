@@ -183,7 +183,7 @@ class Reticulado(object):
 		return FU
 
 	def rediseñar(self, Fu, φ=0.9):
-		Faux = Fu
+		Faux = Fu.copy()
 		barraR=[]
 		Fbarra=[]
 		FUbarra=[]
@@ -201,13 +201,15 @@ class Reticulado(object):
 			Faux[indexmax]=0
 			indexmax = 0
 			Fmax=0
+		print(Fu)
 		print(f"rediseñar barras: {barraR}")
 		print(f"Fuezas  barras a rediseñar: {Fbarra}")
 		for n in barraR:
 			print(f"Nueva Barra {n}")
+			print(f"fuerza {Fu[n]}")
 			self.obtener_barras()[n].rediseñar(Fu[n],self)
 		return print(f"rediseñada barras: {barraR}")
-
+		return print(f"rediseñada barras: {barraR}")
 
 
 
