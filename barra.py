@@ -114,9 +114,11 @@ class Barra(object):
 		se cumplan las disposiciones de diseño lo más cerca posible
 		a FU = 1.0.
 		"""
-		A = self.calcular_area()
-		self.t = 0.0
-		self.R = 0.0
+		#A = self.calcular_area()
+		#I = self.calcular_inercia()
+		#FU = Fu/(φ*A*self.σy)
+		self.t = 0.09
+		self.R = 0.09
 		print (f"R,t = {self.R,self.t}")
 		return [self.R,self.t]
 

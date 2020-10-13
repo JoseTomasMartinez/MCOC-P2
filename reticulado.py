@@ -189,6 +189,7 @@ class Reticulado(object):
 		FUbarra=[]
 		indexmax=0
 		Fmax=0
+		barras=self.obtener_barras()
 #--------------ELEGIR 5 BARRAS QUE TENGAN LA MAYOR FUERZA-----------------#
 		for s in range(5):
 			for i,c in enumerate(Faux):
