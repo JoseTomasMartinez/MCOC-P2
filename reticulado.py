@@ -186,56 +186,20 @@ class Reticulado(object):
 		Faux = Fu
 		barraR=[]
 		Fbarra=[]
+		FUbarra=[]
 		indexmax=0
 		Fmax=0
-#-------#barra 0 a rediseñar---------------------------------------------------
-		for i,c in enumerate(Faux):
-			if (abs(c) > Fmax):
-				indexmax = i
-				Fmax = abs(c)
-		Fbarra.append(Fmax)
-		barraR.append(indexmax)
-		Faux[indexmax]=0
-		indexmax = 0
-		Fmax=0
-#-------#barra 1 a rediseñar---------------------------------------------------
-		for i,c in enumerate(Faux):
-			if (abs(c) > Fmax):
-				indexmax = i
-				Fmax = abs(c)
-		Fbarra.append(Fmax)
-		barraR.append(indexmax)
-		Faux[indexmax]=0
-		indexmax = 0
-		Fmax=0
-#-------#barra 2 a rediseñar---------------------------------------------------
-		for i,c in enumerate(Faux): 
-			if (abs(c) > Fmax):
-				indexmax = i
-				Fmax = abs(c)
-		Fbarra.append(Fmax)
-		barraR.append(indexmax)
-		Faux[indexmax]=0
-		indexmax = 0
-		Fmax=0
-#-------#barra 3 a rediseñar---------------------------------------------------
-		for i,c in enumerate(Faux): 
-			if (abs(c) > Fmax):
-				indexmax = i
-				Fmax = abs(c)
-		Fbarra.append(Fmax)
-		barraR.append(indexmax)
-		Faux[indexmax]=0
-		indexmax = 0
-		Fmax=0
-#-------#barra 4 a rediseñar---------------------------------------------------
-		for i,c in enumerate(Faux): 
-			if (abs(c) > Fmax):
-				indexmax = i
-				Fmax = abs(c)
-		Fbarra.append(Fmax)
-		barraR.append(indexmax)
-		Faux[indexmax]=0
+#--------------ELEGIR 5 BARRAS QUE TENGAN LA MAYOR FUERZA-----------------#
+		for s in range(5):
+			for i,c in enumerate(Faux):
+				if (abs(c) > Fmax):
+					indexmax = i
+					Fmax = abs(c)
+			Fbarra.append(Fmax)
+			barraR.append(indexmax)
+			Faux[indexmax]=0
+			indexmax = 0
+			Fmax=0
 		print(f"rediseñar barras: {barraR}")
 		print(f"Fuezas  barras a rediseñar: {Fbarra}")
 		for n in barraR:
