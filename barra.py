@@ -1,84 +1,123 @@
 import numpy as np
 
-g = 9.81 #[m/s**2]
+g = 9.81 #kg*m/s^2
+
 
 class Barra(object):
-    def __init__(self, ni, nj, R, t, E, ρ, σy):
-        super(Barra, self).__init__()
-        self.ni = ni
-        self.nj = nj
-        self.R = R
-        self.t = t
-        self.E = E
-        self.ρ = ρ
-        self.σy = σy
 
-    def obtener_conectividad(self):
-        return [self.ni,self.nj]
+	"""Constructor para una barra"""
+	def __init__(self, ni, nj, R, t, E, ρ, σy):
+		super(Barra, self).__init__()
+		self.ni = ni
+		self.nj = nj
+		self.R = R
+		self.t = t
+		self.E = E
+		self.ρ = ρ
+		self.σy = σy
 
-    def calcular_area(self):
-        A = np.pi*(self.R**2-(self.R-self.t)**2)
-        return A
+	def obtener_conectividad(self):
+		return [self.ni, self.nj]
 
-    def calcular_largo(self,reticulado):
-        ret = reticulado
-        xi = ret.obtener_coordenada_nodal(self.ni)
-        xj = ret.obtener_coordenada_nodal(self.nj)
-        dij = xi-xj
-        return np.sqrt(np.dot(dij,dij))
+	def calcular_area(self):
+		A = np.pi*(self.R**2) - np.pi*((self.R-self.t)**2)
+		return A
 
-    def calcular_peso(self,reticulado):
-        A = np.pi*(self.R)**2-np.pi*(self.R-self.t)**2
-        ret = reticulado
-        xi = ret.obtener_coordenada_nodal(self.ni)
-        xj = ret.obtener_coordenada_nodal(self.nj)
-        dij = xi-xj
-        L=np.sqrt(np.dot(dij,dij))
-        p = self.ρ * A*L *g
-        return p
+	def calcular_largo(self, reticulado):
+		"""Devuelve el largo de la barra. 
+		xi : Arreglo numpy de dimenson (3,) con coordenadas del nodo i
+		xj : Arreglo numpy de dimenson (3,) con coordenadas del nodo j
+		"""
+		xi = reticulado.obtener_coordenada_nodal(self.ni)
+		xj = reticulado.obtener_coordenada_nodal(self.nj)
+		dij = xi-xj
+		return np.sqrt(np.dot(dij,dij))
 
-    def obtener_rigidez(self, ret):
-        """Devuelve la rigidez ke del elemento. Arreglo numpy de (4x4)
-        ret: instancia de objeto tipo reticulado
-        """
-        xi = (ret.obtener_coordenada_nodal(self.ni))[0]
-        xj = (ret.obtener_coordenada_nodal(self.nj))[0]
-        yi = (ret.obtener_coordenada_nodal(self.ni))[1]
-        yj = (ret.obtener_coordenada_nodal(self.nj))[1]
-        L = self.calcular_largo(ret)
-        A = self.calcular_area()
-        k = self.E*A/L
-        T_t = np.matrix([(xi - xj) / L, (yi - yj) / L, (xj - xi) / L, (yj - yi) / L])
-        ke = T_t.T @ T_t * k
-        return ke
+	def calcular_inercia(self):
+		I = np.pi*[self.R**4-(self.R-self.t)**4]
+		return I
 
-    def obtener_vector_de_cargas(self, ret):
-        """Devuelve el vector de cargas nodales fe del elemento. Vector numpy de (4x1)
-        ret: instancia de objeto tipo reticulado
-        """
-        #Implementar
-        w = self.calcular_peso(ret)
-        fe = np.array([0, -1, 0, -1]).T * w / 2
-        return fe
+	def calcular_peso(self, reticulado):
+		"""Devuelve el largo de la barra. 
+		xi : Arreglo numpy de dimenson (3,) con coordenadas del nodo i
+		xj : Arreglo numpy de dimenson (3,) con coordenadas del nodo j
+		"""
+		L = self.calcular_largo(reticulado)
+		A = self.calcular_area()
+		return self.ρ * A * L * g
 
-    def obtener_fuerza(self, ret):
-        """Devuelve la fuerza se que debe resistir la barra. Un escalar tipo double. 
-        ret: instancia de objeto tipo reticulado
-        """
+	def obtener_rigidez(self, ret):
+		A = self.calcular_area()
+		L = self.calcular_largo(ret)
+		xi = ret.obtener_coordenada_nodal(self.ni)
+		xj = ret.obtener_coordenada_nodal(self.nj)
+		cosθx = (xj[0] - xi[0])/L
+		cosθy = (xj[1] - xi[1])/L
+		cosθz = (xj[2] - xi[2])/L
+		Tθ = np.array([ -cosθx, -cosθy, -cosθz, cosθx, cosθy, cosθz]).reshape((6,1))
 
-        #Implementar
-        xi = (ret.obtener_coordenada_nodal(self.ni))[0]
-        xj = (ret.obtener_coordenada_nodal(self.nj))[0]
-        yi = (ret.obtener_coordenada_nodal(self.ni))[1]
-        yj = (ret.obtener_coordenada_nodal(self.nj))[1]
-        ui = (ret.obtener_desplazamiento_nodal(self.ni))
-        uj = (ret.obtener_desplazamiento_nodal(self.nj))
-        L = self.calcular_largo(ret)
-        A = self.calcular_area()
-        k = self.E*A/L
-        T_t = np.array([ (xi - xj)/L, (yi - yj)/L, (xj - xi)/L, (yj - yi)/L])
-        ue = np.array([ui[0], ui[1], uj[0], uj[1]])
+		return self.E * A / L * (Tθ @ Tθ.T )
 
-        #finalmente
-        se = k*T_t@ue
-        return se
+	def obtener_vector_de_cargas(self, ret):
+		W = self.calcular_peso(ret)
+
+		return np.array([0, 0,-W, 0, 0, -W])
+
+
+	def obtener_fuerza(self, ret):
+		ue = np.zeros(6)
+		ue[0:3] = ret.obtener_desplazamiento_nodal(self.ni)
+		ue[3:] = ret.obtener_desplazamiento_nodal(self.nj)
+		
+		A = self.calcular_area()
+		L = self.calcular_largo(ret)
+
+		xi = ret.obtener_coordenada_nodal(self.ni)
+		xj = ret.obtener_coordenada_nodal(self.nj)
+
+		cosθx = (xj[0] - xi[0])/L
+		cosθy = (xj[1] - xi[1])/L
+		cosθz = (xj[2] - xi[2])/L
+
+		Tθ = np.array([ -cosθx, -cosθy, -cosθz, cosθx, cosθy, cosθz ]).reshape((6,1))
+
+		return self.E * A / L * (Tθ.T @ ue)
+
+
+
+
+
+	def chequear_diseño(self, Fu, φ=0.9):
+		"""Para la fuerza Fu (proveniente de una combinacion de cargas)
+		revisar si esta barra cumple las disposiciones de diseño.
+		"""
+		A = self.calcular_area()
+		Fn=A*self.σy
+		if φ*Fn<abs(Fu):
+			return False
+		else:
+			return True
+
+
+	def obtener_factor_utilizacion(self, Fu, φ=0.9):
+		"""Para la fuerza Fu (proveniente de una combinacion de cargas)
+		calcular y devolver el factor de utilización
+		"""
+		A = self.calcular_area()
+		Fn = A*self.σy
+		return abs(Fu) / (φ*Fn)
+
+
+	def rediseñar(self, Fu, ret, φ=0.9): #ARREGLAR
+		"""Para la fuerza Fu (proveniente de una combinacion de cargas)
+		re-calcular el radio y el espesor de la barra de modo que
+		se cumplan las disposiciones de diseño lo más cerca posible
+		a FU = 1.0.
+		"""
+		A = self.calcular_area()
+		self.t = 0.0
+		self.R = 0.0
+		print (f"R,t = {self.R,self.t}")
+		return [self.R,self.t]
+
+
