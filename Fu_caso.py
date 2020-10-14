@@ -63,7 +63,7 @@ FU_dom = ret_D.recuperar_factores_de_utilizacion(Fu)
 FU_n = ret_D.recuperar_factores_de_utilizacion(Fut)
 peso = ret_D.calcular_peso_total()
 print(f"peso PREDISEÑO reticulado = {peso}")
-
+print("--------------------------")
 import matplotlib.pyplot as plt
 
 ver_reticulado_3d(ret_D, 
@@ -143,14 +143,17 @@ plt.title(f"FU {CasoN}")
 plt.show()
 
 
-
-
-#print(ret_D.obtener_desplazamiento_nodal(1))
+print("--------------------------")
+for i in range(len(ret_D.obtener_nodos())):
+    print(f"Desplazamiento vertical nodo {i} = {ret_D.obtener_desplazamiento_nodal(i)[2]}")
 
 #---------------REDISEÑO-------------
-
+print("--------------------------")
+print("--------------------------")
+print("--------REDISEÑO----------")
 ret_D.rediseñar(Fu)
-
+print("--------------------------")
+print("--------------------------")
 #----------------CORRER MODELO CON VALORES NUEVOS----------------------
 ret_D.ensamblar_sistema()
 ret_L.ensamblar_sistema()
@@ -160,6 +163,8 @@ f_D = ret_D.recuperar_fuerzas()
 f_L = ret_L.recuperar_fuerzas()
 
 #---------------IDENTIFICAR NUEVOS CASOS-------------------------
+print("--------------------------")
+print("--------------------------")
 #Caso Dominante Luego del rediseño
 Fu=0
 if LA.norm(1.2*ret_D.recuperar_fuerzas()+1.6*ret_L.recuperar_fuerzas())>LA.norm(1.4*ret_D.recuperar_fuerzas()):
@@ -178,9 +183,11 @@ elif LA.norm(1.2*ret_D.recuperar_fuerzas()+1.6*ret_L.recuperar_fuerzas())<LA.nor
 
 peso = ret_D.calcular_peso_total()
 print(f"peso reticulado REDISEÑADO = {peso}")
+print("--------------------------")
 
 FU_dom = ret_D.recuperar_factores_de_utilizacion(Fu)
 FU_n = ret_D.recuperar_factores_de_utilizacion(Fut)
+
 import matplotlib.pyplot as plt
 
 ver_reticulado_3d(ret_D, 
@@ -259,4 +266,5 @@ ver_reticulado_3d(ret_D,
 plt.title(f"FU {CasoN} Rediseño")
 plt.show()
 
-
+for i in range(len(ret_D.obtener_nodos())):
+    print(f"Desplazamiento vertical nodo {i} = {ret_D.obtener_desplazamiento_nodal(i)[2]}")
