@@ -63,6 +63,6 @@ Nuevas fuerzas y factores de utilización para caso No dominante:
 
 ## 5)
 
-Al observar la nueva distribución obtenida, se observa que los FU se ditribuyeron de mejor manera que originalmente. Los valores globales de los FU aumentaron el valor cumpliendo que FU < 1, y fueran lo más cercano posible, para lograr una correcta optimización. Al rediseñar las barras de la nueva estructura, se generó un cambio en el área de cada sección de las barras, por lo tanto el peso total de la estructura disminuyó de 24197.43808 [N] a 12228.9176 [N], lo que representa un 50% de su peso original.
+Al observar la nueva distribución obtenida, se observa que los FU se ditribuyeron de mejor manera que originalmente. Los valores globales de los FU aumentaron el valor cumpliendo que FU < 1, y fueran lo más cercano posible, para lograr una correcta optimización. Al rediseñar las barras de la nueva estructura, se generó un cambio en el área de cada sección de las barras, por lo tanto el peso total de la estructura disminuiría de 24197.43808 [N] a 12228.9176 [N], si es que se optimiza toda la estructura, lo que representa un 50% de su peso original.
 
 Los cambios que se pueden hacer para mejorar aun más el costo de la estructura, es lograr mejorar aún mas el peso total, acercándo los demás factores de utilización a 1, o simplemente eliminar aquellas barras cuyo FU son iguales a cero y que no aporten estabilidad a la estructura. Lo que generaría una disminución en el peso total, haciendola más rentable económicamente.
