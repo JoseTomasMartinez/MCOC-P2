@@ -16,14 +16,43 @@
 * Luego de determinar que la combinacion de carga con mayor valor absoluto es la que involucra cargas vivas y muertas (1,2 D + 1,6 L), se escogieron las barras 3, 4, 18, 19 y 29, cuyo nodos son (4,5), (5,6), (0,4), (7,4) y (6,3) respectivamente. Para elegir las barras se escribió un codigo que identifique las barras que poseen mayor fuerza para así rediseñarlas y optimizar la estructura. Las fuerzas de las barras 3 y 4 antes de ser rediseñadas son iguales a 50.800N y un facto de utilización igual a 0,06, mientras que las tres restantes tienen una fuerza de 23.140N y factor de utilizacion 0,03. Luego de aplicar el rediseño se disminuyen las fuerzas de las barras 3 y 4 a 50.577N y 50.354N, con un factor de utilización de 0,98 y 0,97. Por otro lado las barras 18, y 29 disminuyeron su fuerza a 22.559N y 22.165N con un factor de utilización de 1 y 0,96, mientras que la barra 19 aumento a 23.524 con un factor de utilización de 0,94. Si biene la barra 19 aumento en algo su fuerza, la estrucutura mejoró la distribución de las fuerzas y el peso notablemente, ya que las barras rediseñadas poseen factores de utulización muy cercanos a 1. 
 
 
-
 ## 2)
+
+Para utilizar la función de rediseño de cada barra utilizada, en primer lugar se seleccionaron con la función rediseñar del reticulado, las 5 fuerzas de mayor magnitud dentro del reticulado. Para esto se fueron almacenando las fuerzas dentro de un vector, guardande el subindice dentro del vector. Luego de elegidas las 5 fuerzas, se utiliza el vector en la función rediseñar de las barras, donde en primer lugar forzamos la fluencia y suponemos que el óptimo está en R=t, aguantando la mayor fuerza y lo hará más liviano. De esa manera ajustamos a 0.97 el FU, lo que generará un aumento en el factor de fluencia a largo plazo, lo que se traduce en las 2 primeras líneas de la función mostrada. Posteriormente con while se comprueba que la esbeltez se deba cumplir, entonces si esto no se cumple, se ajusta y se sube el área con R y t, y se baja el FU si es que FU>1 o λ<300.
+
+Cabe mencionar que para obtener el reticulado rediseñado y los gráficos, se creó un nuevo archivo llamado Fu_caso.py
+
+A continuación se muestra la función rediseñar de las barras:
+
+```
+def rediseñar(self, Fu, ret, φ=0.9):
+
+		self.R = np.sqrt(abs(Fu)/(φ*self.σy*np.pi*0.98))
+		self.t = np.sqrt(abs(Fu)/(φ*self.σy*np.pi*0.98))
+		A = self.calcular_area()
+		I = self.calcular_inercia()
+		L = self.calcular_largo(ret)
+		FU = (abs(Fu)/(φ*A*self.σy))
+		i = np.sqrt(I/A)
+		λ =L/i
+		while FU > 1. and λ<300:
+			self.R=1.05*self.R
+			self.t=1.05*self.t
+		print (f"FU,λ = {FU,λ}")
+		return None
+```
 
 
 ## 3)
 
 
+
 ## 4)
 
 
+
 ## 5)
+
+Al observar la nueva distribución obtenida, se observa que los FU se ditribuyeron de mejor manera que originalmente. Los valores globales de los FU aumentaron el valor cumpliendo que FU < 1, y fueran lo más cercano posible, para lograr una correcta optimización. Al rediseñar las barras de la nueva estructura, se generó un cambio en el área de cada sección de las barras, por lo tanto el peso total de la estructura disminuyó de 24197.43808 [N] a 12228.9176 [N], lo que representa un 50% de su peso original.
+
+Los cambios que se pueden hacer para mejorar aun más el costo de la estructura, es lograr mejorar aún mas el peso total, acercándo los demás factores de utilización a 1, o simplemente eliminar aquellas barras cuyo FU son iguales a cero y que no aporten estabilidad a la estructura. Lo que generaría una disminución en el peso total, haciendola más rentable económicamente.
