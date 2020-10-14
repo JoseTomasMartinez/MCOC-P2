@@ -69,7 +69,7 @@ import matplotlib.pyplot as plt
 ver_reticulado_3d(ret_D, 
     opciones_nodos = {
         "usar_posicion_deformada": True,
-        "factor_amplificacion_deformada": 60.,
+        "factor_amplificacion_deformada": 80.,
     },
     opciones_barras = {
         "color_barras_por_dato": True,
@@ -88,7 +88,7 @@ plt.show()
 ver_reticulado_3d(ret_D, 
     opciones_nodos = {
         "usar_posicion_deformada": True,
-        "factor_amplificacion_deformada": 60.,
+        "factor_amplificacion_deformada": 80.,
     },
     opciones_barras = {
         "color_barras_por_dato": True,
@@ -107,7 +107,7 @@ plt.show()
 ver_reticulado_3d(ret_D, 
     opciones_nodos = {
         "usar_posicion_deformada": True,
-        "factor_amplificacion_deformada": 60.,
+        "factor_amplificacion_deformada": 80.,
     },
     opciones_barras = {
         "color_barras_por_dato": True,
@@ -126,7 +126,7 @@ plt.show()
 ver_reticulado_3d(ret_D, 
     opciones_nodos = {
         "usar_posicion_deformada": True,
-        "factor_amplificacion_deformada": 60.,
+        "factor_amplificacion_deformada": 80.,
     },
     opciones_barras = {
         "color_barras_por_dato": True,
@@ -193,7 +193,7 @@ import matplotlib.pyplot as plt
 ver_reticulado_3d(ret_D, 
     opciones_nodos = {
         "usar_posicion_deformada": True,
-        "factor_amplificacion_deformada": 60.,
+        "factor_amplificacion_deformada": 80.,
     },
     opciones_barras = {
         "color_barras_por_dato": True,
@@ -212,7 +212,7 @@ plt.show()
 ver_reticulado_3d(ret_D, 
     opciones_nodos = {
         "usar_posicion_deformada": True,
-        "factor_amplificacion_deformada": 60.,
+        "factor_amplificacion_deformada": 80.,
     },
     opciones_barras = {
         "color_barras_por_dato": True,
@@ -231,7 +231,7 @@ plt.show()
 ver_reticulado_3d(ret_D, 
     opciones_nodos = {
         "usar_posicion_deformada": True,
-        "factor_amplificacion_deformada": 60.,
+        "factor_amplificacion_deformada": 80.,
     },
     opciones_barras = {
         "color_barras_por_dato": True,
@@ -250,7 +250,7 @@ plt.show()
 ver_reticulado_3d(ret_D, 
     opciones_nodos = {
         "usar_posicion_deformada": True,
-        "factor_amplificacion_deformada": 60.,
+        "factor_amplificacion_deformada": 80.,
     },
     opciones_barras = {
         "color_barras_por_dato": True,
@@ -268,3 +268,5 @@ plt.show()
 
 for i in range(len(ret_D.obtener_nodos())):
     print(f"Desplazamiento vertical nodo {i} = {ret_D.obtener_desplazamiento_nodal(i)[2]}")
+print("------------END-----------")
+print("--------------------------")
