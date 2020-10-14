@@ -42,19 +42,25 @@ f_1 = 1.4*f_D           #Combinacion 1
 f_2 = 1.2*f_D + 1.6*f_L #Combinacion 2
 
 #Caso Dominante
+#Caso Dominante Luego del rediseño
 Fu=0
 if LA.norm(1.2*ret_D.recuperar_fuerzas()+1.6*ret_L.recuperar_fuerzas())>LA.norm(1.4*ret_D.recuperar_fuerzas()):
     Fu=1.2*f_D + 1.6*f_L #Combinacion 2
+    Fut=1.4*f_D #Combinacion 1
     CasoDom = "Caso Dominante 1.2 D + 1.6 L"
+    CasoN = "Caso NO Dominante 1.4D"
     print(CasoDom)
 elif LA.norm(1.2*ret_D.recuperar_fuerzas()+1.6*ret_L.recuperar_fuerzas())<LA.norm(1.4*ret_D.recuperar_fuerzas()):
-    Fu=1.4*f_D
+    Fu=1.4*f_D #Combinacion 1
+    Fut=1.2*f_D + 1.6*f_L #Combinacion 2
     CasoDom = "Caso Dominante 1.4D"
+    CasoN = "Caso NO Dominante 1.2 D + 1.6 L"
     print(CasoDom)
 
 
 # Calcular factores
 FU_dom = ret_D.recuperar_factores_de_utilizacion(Fu)
+FU_n = ret_D.recuperar_factores_de_utilizacion(Fut)
 peso = ret_D.calcular_peso_total()
 print(f"peso PREDISEÑO reticulado = {peso}")
 
@@ -98,6 +104,48 @@ ver_reticulado_3d(ret_D,
 plt.title(f"FU {CasoDom}")
 plt.show()
 
+ver_reticulado_3d(ret_D, 
+    opciones_nodos = {
+        "usar_posicion_deformada": True,
+        "factor_amplificacion_deformada": 60.,
+    },
+    opciones_barras = {
+        "color_barras_por_dato": True,
+        "ver_numeros_de_barras": False,
+        "ver_dato_en_barras": True,
+        "dato": Fut,
+        "color_fondo": [1,1,1,0.4]
+    }, 
+    llamar_show=False,
+    zoom=180.,
+    deshabilitar_ejes=True)
+
+plt.title(f"Tensiones {CasoN}")
+plt.show()
+
+ver_reticulado_3d(ret_D, 
+    opciones_nodos = {
+        "usar_posicion_deformada": True,
+        "factor_amplificacion_deformada": 60.,
+    },
+    opciones_barras = {
+        "color_barras_por_dato": True,
+        "ver_numeros_de_barras": False,
+        "ver_dato_en_barras": True,
+        "dato": FU_n,
+        "color_fondo": [1,1,1,0.4]
+    }, 
+    llamar_show=False,
+    zoom=180.,
+    deshabilitar_ejes=True)
+
+plt.title(f"FU {CasoN}")
+plt.show()
+
+
+
+
+#print(ret_D.obtener_desplazamiento_nodal(1))
 
 #---------------REDISEÑO-------------
 
@@ -118,11 +166,13 @@ if LA.norm(1.2*ret_D.recuperar_fuerzas()+1.6*ret_L.recuperar_fuerzas())>LA.norm(
     Fu=1.2*f_D + 1.6*f_L #Combinacion 2
     Fut=1.4*f_D #Combinacion 1
     CasoDom = "Caso Dominante 1.2 D + 1.6 L"
+    CasoN = "Caso NO Dominante 1.4D"
     print(CasoDom)
 elif LA.norm(1.2*ret_D.recuperar_fuerzas()+1.6*ret_L.recuperar_fuerzas())<LA.norm(1.4*ret_D.recuperar_fuerzas()):
     Fu=1.4*f_D #Combinacion 1
     Fut=1.2*f_D + 1.6*f_L #Combinacion 2
     CasoDom = "Caso Dominante 1.4D"
+    CasoN = "Caso NO Dominante 1.2 D + 1.6 L"
     print(CasoDom)
 
 
@@ -171,5 +221,42 @@ ver_reticulado_3d(ret_D,
 plt.title(f"FU {CasoDom} Rediseño")
 plt.show()
 
+ver_reticulado_3d(ret_D, 
+    opciones_nodos = {
+        "usar_posicion_deformada": True,
+        "factor_amplificacion_deformada": 60.,
+    },
+    opciones_barras = {
+        "color_barras_por_dato": True,
+        "ver_numeros_de_barras": False,
+        "ver_dato_en_barras": True,
+        "dato": Fut,
+        "color_fondo": [1,1,1,0.4]
+    }, 
+    llamar_show=False,
+    zoom=180.,
+    deshabilitar_ejes=True)
+
+plt.title(f"Tensiones {CasoN} Rediseño")
+plt.show()
+
+ver_reticulado_3d(ret_D, 
+    opciones_nodos = {
+        "usar_posicion_deformada": True,
+        "factor_amplificacion_deformada": 60.,
+    },
+    opciones_barras = {
+        "color_barras_por_dato": True,
+        "ver_numeros_de_barras": False,
+        "ver_dato_en_barras": True,
+        "dato": FU_n,
+        "color_fondo": [1,1,1,0.4]
+    }, 
+    llamar_show=False,
+    zoom=180.,
+    deshabilitar_ejes=True)
+
+plt.title(f"FU {CasoN} Rediseño")
+plt.show()
 
 
