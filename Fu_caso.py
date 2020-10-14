@@ -100,7 +100,7 @@ plt.show()
 
 
 #---------------REDISEÑO-------------
-print(Fu[3])
+
 ret_D.rediseñar(Fu)
 
 #----------------CORRER MODELO CON VALORES NUEVOS----------------------
