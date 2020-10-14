@@ -1,5 +1,7 @@
 # Entrega 4 - Diseño del reticulado
 
+COMENTARIO: archivos python utilizados: caso_L.py, caso_D.py, reticulado.py, barra.py y Fu_caso.py.
+
 * Se realiza el siguiente reticulado de largo = 15 m, ancho = 2 m y alto = 3,5 m, compuesto por barras de sección circular de radio R = 8 cm y espesor t = 5 mm. Los nodos 0 y 7 están completamente fijos, mientras que 3 y 10 son libres de deslizar solo en la dirección X (longitudinal). Se considera que además de la carga muerta (D) de peso propio, este se debe diseñar para una sobrecarga de uso (L) que corresponde a una carga distribuida sobre el tablero central de qL = 400 kg/m^2. Se consideran para su análisis 2 casos de combinaciones de carga. Las cuales son: Caso 1: 1.4 D  , Caso 2: 1.2 D + 1.6 L.
 
 * Inicialmente el programa de reticulado entrega los siguientes resultados para tensiones y factores de utilización respectivos:
