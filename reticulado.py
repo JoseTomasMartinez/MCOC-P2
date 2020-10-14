@@ -201,9 +201,7 @@ class Reticulado(object):
 			Faux[indexmax]=0
 			indexmax = 0
 			Fmax=0
-		print(Fu)
 		print(f"rediseñar barras: {barraR}")
-		print(f"Fuezas  barras a rediseñar: {Fbarra}")
 		for n in barraR:
 			print(f"Nueva Barra {n}")
 			print(f"fuerza {Fu[n]}")
