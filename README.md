@@ -54,15 +54,19 @@ Nuevas fuerzas y factores de utilización para caso No dominante:
 ![Tensiones](https://user-images.githubusercontent.com/53920966/95929451-670d9480-0d9a-11eb-82b0-24aa34cff32c.png)
 ![FU](https://user-images.githubusercontent.com/53920966/95929454-67a62b00-0d9a-11eb-95f4-dd7117b961fb.png)
 
+Para rediseñar se forzó la ecuación de fluencia para que cumpla con la condición de diseño, suponiendo que el optimo se encuentra en R = t, es decir que con esa configuracion se resiste más fuerza y a la vez hace más liviana la estructura. Se ajustó a 0,97 el factor de utilización, ya que al utilizar esa área el factor de utilización se alejaría de 1, mientras que con esta configuración los factores de utilización estarán mas cercanos a 1. Además, se restringe el código para que se cumpla el criterio de esbeltez. En caso de no cumplir se reajusta el área para que cumpla.
+
 
 
 
 ## 4)
+El desplazamiento vertical máximo antes del rediseño es de -1,042e-4 metros correspondiente al nodo 5.
+El desplazamiento vertical máximo antes del rediseño es de -0,0016 metros correspondiente al nodo 1.
 
 
 
 ## 5)
 
-Al observar la nueva distribución obtenida, se observa que los FU se ditribuyeron de mejor manera que originalmente. Los valores globales de los FU aumentaron el valor cumpliendo que FU < 1, y fueran lo más cercano posible, para lograr una correcta optimización. Al rediseñar las barras de la nueva estructura, se generó un cambio en el área de cada sección de las barras, por lo tanto el peso total de la estructura disminuyo de 24197.43808 [N] a 20141.3740 [N]. Si es que se optimiza toda la estructura, podrías significar una reduccion del 50% de su peso original, generanod un ahorro en costos de acero.
+Al observar la nueva distribución obtenida, se observa que los FU se ditribuyeron de mejor manera que originalmente. Los valores globales de los FU aumentaron el valor cumpliendo que FU < 1, y fueran lo más cercano posible, para lograr una correcta optimización. Al rediseñar las barras de la nueva estructura, se generó un cambio en el área de cada sección de las barras, por lo tanto el peso total de la estructura disminuiría de 24197.43808 [N] a 12228.9176 [N], si es que se optimiza toda la estructura, lo que representa un 50% de su peso original.
 
-Los cambios que se pueden hacer para mejorar aun más el costo de la estructura, es lograr mejorar aún más el peso total, acercándo los demás factores de utilización a 1, o simplemente eliminar aquellas barras cuyo FU son iguales a cero y que no aporten estabilidad a la estructura. Lo que generaría una disminución en el peso total, haciendola más rentable económicamente.
+Los cambios que se pueden hacer para mejorar aun más el costo de la estructura, es lograr mejorar aún mas el peso total, acercándo los demás factores de utilización a 1, o simplemente eliminar aquellas barras cuyo FU son iguales a cero y que no aporten estabilidad a la estructura. Lo que generaría una disminución en el peso total, haciendola más rentable económicamente.
